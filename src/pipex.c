@@ -6,7 +6,7 @@
 /*   By: mvalk <mvalk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/22 16:37:57 by mvalk         #+#    #+#                 */
-/*   Updated: 2023/05/17 11:25:58 by mvalk         ########   odam.nl         */
+/*   Updated: 2023/06/07 13:06:54 by mvalk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	pipex(t_pipex *pipex_info)
 	close(pipex_info->pipe_fd[1]);
 	waitpid(pid_1, NULL, 0);
 	waitpid(pid_2, &status, 0);
-	if (WIFEXITED(status))
-		exit(WEXITSTATUS(status));
 	close(pipex_info->fd_in);
 	close(pipex_info->fd_out);
+	if (WIFEXITED(status))
+		exit(WEXITSTATUS(status));
 	return (EXIT_SUCCESS);
 }
 

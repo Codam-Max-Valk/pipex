@@ -6,7 +6,7 @@
 /*   By: mvalk <mvalk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/01 17:44:24 by mvalk         #+#    #+#                 */
-/*   Updated: 2023/05/02 11:47:48 by mvalk         ########   odam.nl         */
+/*   Updated: 2023/06/07 12:19:37 by mvalk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@ void	error_exit(char *function, int error_num)
 {
 	perror(function);
 	exit(error_num);
+}
+
+void	free_pipex(t_pipex *pipex_info)
+{
+	int	i;
+
+	i = 0;
+	if (pipex_info->path_f == 0)
+	{
+		while (pipex_info->paths[i])
+		{
+			free(pipex_info->paths[i]);
+			i++;
+		}
+		free (pipex_info->paths);
+	}
+	free(pipex_info);
 }
 
 char	**parse_env(char **envp)
@@ -35,6 +52,8 @@ char	*cmd_path(char **paths, char *cmd, int path_f)
 	char	*full_cmd;
 	char	*tmp;
 
+	if (!cmd)
+		return (NULL);
 	if (ft_strchr(cmd, '/') || path_f == -1)
 		return (cmd);
 	while (*paths)

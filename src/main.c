@@ -6,7 +6,7 @@
 /*   By: mvalk <mvalk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/02/23 13:37:32 by mvalk         #+#    #+#                 */
-/*   Updated: 2023/05/17 11:32:33 by mvalk         ########   odam.nl         */
+/*   Updated: 2023/06/07 13:12:14 by mvalk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	main(int argc, char *argv[], char *envp[])
 		if (access(pipex_info->argv[4], W_OK) != 0)
 			error_exit(pipex_info->argv[4], errno);
 		pipex(pipex_info);
-		return (free (pipex_info), 0);
+		return (free_pipex(pipex_info), EXIT_SUCCESS);
 	}
 	else
-		error_exit("invalid argument count", 1);
+		error_exit("invalid argument count", EINVAL);
 }
