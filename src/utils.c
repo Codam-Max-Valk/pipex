@@ -6,7 +6,7 @@
 /*   By: mvalk <mvalk@student.codam.nl>               +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/05/01 17:44:24 by mvalk         #+#    #+#                 */
-/*   Updated: 2023/06/07 12:19:37 by mvalk         ########   odam.nl         */
+/*   Updated: 2023/06/07 14:49:46 by mvalk         ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ char	*cmd_path(char **paths, char *cmd, int path_f)
 
 	if (!cmd)
 		return (NULL);
-	if (ft_strchr(cmd, '/') || path_f == -1)
+	if (ft_strchr(cmd, '/'))
 		return (cmd);
+	if (path_f == -1)
+		return (NULL);
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
